@@ -1,0 +1,47 @@
+body {
+    text-align: center;
+    font-size: x-large;
+    background: lightseagreen;
+    color: white;
+}
+
+button{
+    background: white;
+    color: lightseagreen;
+    padding: 1%;
+    font-size: large;
+    border-radius: 100px;
+}
+
+h3 {
+    margin: 8% 0 5% 0;
+}
+
+#showArray {
+    margin-top: 6%;
+}
+
+.menu {
+    list-style: none;
+}
+a {
+    color: white;
+}
+.menu li {
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+#arrayIndex {
+    width: 50px;
+}
+
+#updateFields {
+    width: 62%;
+    text-align: right;
+}
+
+#sliceFields{
+    width: 25%;
+    text-align: right;
+}

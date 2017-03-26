@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Create and View</title>
+
+    <link rel="stylesheet" href="myStyle.css">
+    <script src="myJs.js"></script>
+</head>
+<body>
+<h3>Create Linked List</h3>
+<div>
+<label>
+    How many nodes in your Linked List:
+    <input id="arraySize" type="number" maxlength="100"/>
+</label>
+<br />
+<br />
+    <button type="submit" onclick="arrayStatus(true, 'Linked List: ')">Show Linked List</button>
+    <button type="submit" onclick="create()">Create</button>
+    <a id="back" href="index.html">Back</a>
+</div>
+<br>
+<div id="showArray"></div>
+</body>
+</html>
