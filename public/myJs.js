@@ -1,7 +1,7 @@
 // All Views are controlled from here
 
 //========== Global Variables ============
-var value = '', array = [], index = 0, span = '', newArray = [];
+var value = '', array = [], index = 0;
 //============== End ===============
 
 // node's Constructor
@@ -24,7 +24,6 @@ function create(){
             array[j].element = Math.round(Math.random() * 10);
             array[j].next = array[j+1];
         }
-        //console.log('node'+ (arraySize));
         array[arraySize-1].element = Math.round(Math.random() * 10);
         setArray(array);
         arrayStatus(true, 'Linked List created:');
@@ -53,12 +52,12 @@ function addAtLast() {
     value = document.getElementById('element').value;
     array = getArray();
     if(!array.length){
-        alert('Linked List is empty..')
+        alert('Linked List not exists \n create first..')
     }
     else {
         array.push(new Node(value, null));
         setArray(array);
-        arrayStatus(true);
+        arrayStatus(true, 'Linked List: ');
     }
 }
 
@@ -75,11 +74,11 @@ function deleteElement(){
         if(index !== -1){
             array.splice(index, 1);
             setArray(array);
-            arrayStatus(true);
+            arrayStatus(true, 'Linked List: ');
         }
     }
     else {
-        alert('Linked List is empty..')
+        alert('Linked List not exists \n create first..')
     }
 }
 
@@ -90,38 +89,22 @@ function updateElement(){
     array = getArray();
     if(array.length) {
         array.forEach(function (node, idx) {
-            if (value === node.element) {
+            if (value == node.element) {
                 index = idx;
             }
         });
         if (index !== -1) {
-            array.splice(index, 1, newElement);
+            array.splice(index, 1, new Node(newElement, array[index + 1]));
             setArray(array);
-            arrayStatus();
+            arrayStatus(true, 'Linked List: ');
         }
     }
     else {
-        alert('Linked List is empty..')
+        alert('Linked List not exists \n create first..')
     }
 }
 
-// search Element in Linked List
-function searchElement(){
-    array = getArray();
-    value = document.getElementById('element').value;
-    index = array.indexOf(value);
-    span = document.getElementById('searchResult');
-    if(index != -1){
-        span.innerHTML = 'Search Result: ' +value + ' found at index ' + index + ' of the Linked List';
-        span.style.color = 'green';
-    }
-    else {
-        span.innerHTML = 'Search Result: ' +value + ' not found in the Linked List';
-        span.style.color = 'red';
-    }
-}
-
-// insertBefore
+// insert Before any node
 function insertNodeBefore(){
     value = document.getElementById('element').value;
     var newElement = document.getElementById('newElement').value;
@@ -140,7 +123,7 @@ function insertNodeBefore(){
         }
     }
     else {
-        alert('Linked List is empty..');
+        alert('Linked List not exists \n create first..');
     }
 }
 
@@ -163,7 +146,7 @@ function insertAfter(){
         }
     }
     else {
-        alert('Linked List is empty..');
+        alert('Linked List not exists \n create first..');
     }
 }
 
@@ -171,18 +154,13 @@ function insertAfter(){
 function addAtFirst(){
     value = document.getElementById('element').value;
     array = getArray();
-    //newArray = checkLogicalSizeOfArray(array);
-    //if(newArray.length == array.length){
-    //    alert('Linked List is full!')
-    //}
-    //else
     if(!array.length){
-        alert('Linked List is empty..')
+        alert('Linked List not exists \n create first..')
     }
     else {
         array.unshift(new Node(value, null));
         setArray(array);
-        arrayStatus(true);
+        arrayStatus(true, 'Linked List :');
     }
 }
 
@@ -190,18 +168,6 @@ function addAtFirst(){
 
 //========== Helper Functions ==========
 
-// check Linked List Existence
-function checkArrayExistence(){
-    array = getArray();
-    if(array && array.length){
-        alert('An Linked List is already exist in DB');
-        alert('click Update to update existing one..');
-        arrayStatus();
-    }
-    else {
-        alert('No Linked List exists in DB, Create a new One..');
-    }
-}
 // set Linked List in Local Storage
 function setArray(array){
     localStorage.setItem('list', JSON.stringify(array));
@@ -212,13 +178,7 @@ function getArray(){
     return JSON.parse(localStorage.getItem('list')) || [];
 }
 
-// check Logical size of array
-function checkLogicalSizeOfArray(array){
-    return array.filter(function(node){
-        return node.element;
-    });
-}
-
+// create Elements in DOM
 function createElements(elementName, innerText, parentId){
     var node = document.createElement(elementName);
     var textNode = document.createTextNode(innerText);
